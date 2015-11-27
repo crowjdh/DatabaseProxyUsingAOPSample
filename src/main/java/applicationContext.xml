@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+	<bean id="databaseBean" class="kr.blogspot.crowjdh.model.database.Database">
+	    <!-- You can add initial properties in here -->
+		<!-- <property name="name" value="Hello" />
+		<property name="id" value="12345" /> -->
+	</bean>
+	
+	<bean id="databaseTransactionAdviceBean"
+	    class="kr.blogspot.crowjdh.model.database.aop.DatabaseTransactionAdvice" />
+	
+	<bean id="databaseTransactionPointCutAdvisor"
+	    class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+	    <property name="patterns">
+            <list>
+                <value>.*save.*</value>
+            </list>
+        </property>
+        <property name="advice" ref="databaseTransactionAdviceBean" />
+	</bean>
+
+	<bean id="databaseProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="databaseBean" />
+		<property name="interceptorNames">
+			<list>
+			    <value>databaseTransactionPointCutAdvisor</value>
+			</list>
+		</property>
+	</bean>
+</beans>
