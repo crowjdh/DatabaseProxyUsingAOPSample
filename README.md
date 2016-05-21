@@ -8,5 +8,5 @@ of your code.
 
 #### References
 - [Spring AOP Example](http://examples.javacodegeeks.com/enterprise-java/spring/aop/spring-aop-example/) by Theodora Fragkouli  
-- [Clean Code - Chapter 11. System](https://github.com/Yooii-Studios/Clean-Code/blob/master/Chapter%2011%20-%20시스템.md) by Robert C. Martin  
+- [Clean Code - Chapter 11. System](https://github.com/Yooii-Studios/Clean-Code/blob/master/Chapter%2011%20-%20시스템.md#4-2) by Robert C. Martin  
 
