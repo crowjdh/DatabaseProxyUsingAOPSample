@@ -5,11 +5,11 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <dependencies>
-      <depencency>
+      <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-core</artifactId>
           <version>${spring.version}</version>
-      </depencency>
+      </dependency>
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-context</artifactId>
